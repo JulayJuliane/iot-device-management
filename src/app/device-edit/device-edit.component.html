@@ -1,0 +1,27 @@
+<div *ngIf="device">
+  <h2>Editar Dispositivo</h2>
+<!-- device-edit.component.html -->
+<form (submit)="updateDevice()">
+  <div>
+    <label for="identifier">Identificador:</label>
+    <input type="text" id="identifier" [(ngModel)]="device.identifier" name="identifier" required>
+  </div>
+  <div>
+    <label for="description">Descrição:</label>
+    <input type="text" id="description" [(ngModel)]="device.description" name="description">
+  </div>
+  <div>
+    <label for="manufacturer">Fabricante:</label>
+    <input type="text" id="manufacturer" [(ngModel)]="device.manufacturer" name="manufacturer">
+  </div>
+  <div>
+    <label for="url">URL:</label>
+    <input type="text" id="url" [(ngModel)]="device.url" name="url">
+  </div>
+  <button type="submit">Salvar</button>
+</form>
+
+</div>
+<div *ngIf="!device">
+  <p>Carregando detalhes do dispositivo...</p>
+</div>

@@ -1,1 +1,10 @@
-<p>device-list works!</p>
+<!-- device-list.component.html -->
+<ul>
+  <li *ngFor="let device of devices | paginate: { itemsPerPage: 10, currentPage: p }">
+    <a [routerLink]="['/devices', device.id]">
+      {{ device.identifier }} - {{ device.description }} ({{ device.manufacturer }})
+    </a>
+    <button (click)="deleteDevice(device.id)">Excluir</button>
+  </li>
+</ul>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

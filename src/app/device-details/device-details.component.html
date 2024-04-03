@@ -1,1 +1,21 @@
-<p>device-details works!</p>
+
+<div *ngIf="device">
+  <h2>Detalhes do Dispositivo</h2>
+  <p *ngIf="device.identifier"><strong>Identificador:</strong> {{ device.identifier }}</p>
+  <p *ngIf="device.description"><strong>Descrição:</strong> {{ device.description }}</p>
+  <p *ngIf="device.manufacturer"><strong>Fabricante:</strong> {{ device.manufacturer }}</p>
+  <p *ngIf="device.url"><strong>URL:</strong> <a [href]="device.url" target="_blank">{{ device.url }}</a></p>
+  <h3>Comandos:</h3>
+  <ul *ngIf="device.commands && device.commands.length > 0">
+    <li *ngFor="let command of device.commands">
+      <strong>{{ command.operation }}:</strong> {{ command.description }}
+    </li>
+  </ul>
+  <div *ngIf="!device.identifier && !device.description && !device.manufacturer && !device.url">
+    <p>Nenhum detalhe disponível para este dispositivo.</p>
+  </div>
+</div>
+<div *ngIf="!device">
+  <p>Carregando detalhes do dispositivo...</p>
+</div>
+
