@@ -11,6 +11,7 @@ export class DeviceListComponent implements OnInit {
   devices: Device[] = [];
   filterTerm: string = '';
   p: number = 1;
+  isLoading: boolean = false;
 
   constructor(private deviceService: DeviceService) { }
 
@@ -19,15 +20,21 @@ export class DeviceListComponent implements OnInit {
   }
 
   loadDevices() {
-    this.deviceService.getAllDevices().subscribe(devices => {
-      this.devices = devices;
-    });
+    this.isLoading = true;
+    this.deviceService.getAllDevices().subscribe(
+      devices => {
+        this.devices = devices;
+        this.isLoading = false;
+      },
+      error => {
+        this.isLoading = false;
+      }
+    );
   }
 
   deleteDevice(id: number) {
     if (confirm('Tem certeza que deseja excluir este dispositivo?')) {
       this.deviceService.deleteDevice(id).subscribe(() => {
-        // Atualizar a lista de dispositivos após exclusão
         this.loadDevices();
       });
     }

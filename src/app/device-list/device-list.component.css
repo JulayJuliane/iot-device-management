@@ -1,0 +1,28 @@
+
+.device-item {
+  transition: all 0.3s ease;
+}
+
+.device-item.ng-enter, .device-item.ng-leave {
+  transition: all 0.3s ease;
+}
+
+.device-item.ng-enter {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.device-item.ng-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.device-item.ng-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.device-item.ng-leave-active {
+  opacity: 0;
+  transform: translateY(-20px);
+}

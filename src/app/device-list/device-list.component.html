@@ -1,5 +1,7 @@
 <!-- device-list.component.html -->
-<ul>
+<!-- device-list.component.html -->
+<div *ngIf="isLoading">Carregando...</div>
+<ul *ngIf="!isLoading">
   <li *ngFor="let device of devices | paginate: { itemsPerPage: 10, currentPage: p }">
     <a [routerLink]="['/devices', device.id]">
       {{ device.identifier }} - {{ device.description }} ({{ device.manufacturer }})
